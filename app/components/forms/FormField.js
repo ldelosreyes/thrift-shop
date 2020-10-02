@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 import TextInput from "./TextInput";
 import ErrorMessage from "./ErrorMessage";
 
-const AppFormField = ({ name, width, ...props }) => {
+const FormField = ({ name, width, ...props }) => {
   const { setFieldTouched, handleChange, errors, touched } = useFormikContext();
   return (
     <>
@@ -19,4 +19,4 @@ const AppFormField = ({ name, width, ...props }) => {
   );
 };
 
-export default AppFormField;
+export default FormField;
