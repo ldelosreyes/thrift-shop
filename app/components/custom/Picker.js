@@ -9,12 +9,21 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { colors } from "../config";
-import AppText from "./AppText";
+import { colors } from "../../config";
 import PickerItem from "./PickerItem";
 import Screen from "./Screen";
+import Text from "./Text";
 
-const AppPicker = ({ icon, placeholder, items, selected, onSelect }) => {
+const Picker = ({
+  icon,
+  items,
+  numColumns = 1,
+  onSelect,
+  PickerItemComponent = PickerItem,
+  placeholder,
+  selected,
+  width = "100%",
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleSelect = (item) => {
@@ -25,7 +34,7 @@ const AppPicker = ({ icon, placeholder, items, selected, onSelect }) => {
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
           {icon && (
             <MaterialCommunityIcons
               style={styles.icon}
@@ -35,9 +44,9 @@ const AppPicker = ({ icon, placeholder, items, selected, onSelect }) => {
             />
           )}
           {selected ? (
-            <AppText style={styles.text}>{selected.label}</AppText>
+            <Text style={styles.text}>{selected.label}</Text>
           ) : (
-            <AppText style={styles.placeholder}>{placeholder}</AppText>
+            <Text style={styles.placeholder}>{placeholder}</Text>
           )}
           <MaterialCommunityIcons
             name="chevron-down"
@@ -52,8 +61,10 @@ const AppPicker = ({ icon, placeholder, items, selected, onSelect }) => {
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            numColumns={numColumns}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => handleSelect(item)}
               />
@@ -70,7 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     borderRadius: 25,
     flexDirection: "row",
-    width: "100%",
     padding: 15,
     marginVertical: 10,
     alignItems: "center",
@@ -87,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppPicker;
+export default Picker;

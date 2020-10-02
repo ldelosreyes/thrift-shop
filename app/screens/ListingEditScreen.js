@@ -3,11 +3,12 @@ import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import {
-  Screen,
   AppForm,
   AppFormField,
   AppFormPicker,
   AppSubmitButton,
+  CategoryPickerItem,
+  Screen,
 } from "../components";
 
 const validationSchema = Yup.object().shape({
@@ -18,9 +19,9 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-  { label: "Clothing", value: 1 },
-  { label: "Shoes", value: 2 },
-  { label: "Handbags", value: 3 },
+  { backgroundColor: "red", icon: "apps", label: "Clothing", value: 1 },
+  { backgroundColor: "green", icon: "email", label: "Shoes", value: 2 },
+  { backgroundColor: "blue", icon: "lock", label: "Handbags", value: 3 },
 ];
 
 const ListingEditScreen = () => {
@@ -42,11 +43,15 @@ const ListingEditScreen = () => {
           name="price"
           placeholder="Price"
           keyboardType="numeric"
+          width={120}
         />
         <AppFormPicker
           items={categories}
           name="category"
+          numColumns={3}
+          PickerItemComponent={CategoryPickerItem}
           placeholder="Category"
+          width="50%"
         />
         <AppFormField
           maxLength={255}
