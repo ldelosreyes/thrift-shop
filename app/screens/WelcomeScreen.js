@@ -1,11 +1,11 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
-import { AppButton } from "../components";
+import { Button } from "../components";
 
 import colors from "../config/color";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
   return (
     <ImageBackground
       blurRadius={2}
@@ -16,10 +16,13 @@ const WelcomeScreen = () => {
         <Image style={styles.logo} source={require("../assets/logo.png")} />
       </View>
       <View style={styles.buttonsContainer}>
-        <AppButton onPress={() => console.log("login")}>Login</AppButton>
-        <AppButton color="secondary" onPress={() => console.log("register")}>
+        <Button onPress={() => navigation.navigate("Login")}>Login</Button>
+        <Button
+          color="secondary"
+          onPress={() => navigation.navigate("Register")}
+        >
           Register
-        </AppButton>
+        </Button>
       </View>
     </ImageBackground>
   );
