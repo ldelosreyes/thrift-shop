@@ -2,8 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { AccountNavigator, FeedNavigator, routes } from "../navigation";
+import { routes } from "../config";
 import { ListingEditScreen } from "../screens";
+import AccountNavigator from "./AccountNavigator";
+import FeedNavigator from "./FeedNavigator";
 import NewListingButton from "./NewListingButton";
 
 const Tab = createBottomTabNavigator();

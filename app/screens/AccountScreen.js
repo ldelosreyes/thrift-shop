@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { Icon, ListItem, ListItemSeparator, Screen } from "../components";
-import colors from "../config/color";
-import { routes } from "../navigation";
+import { colors, routes } from "../config";
 
 const menu = [
   {

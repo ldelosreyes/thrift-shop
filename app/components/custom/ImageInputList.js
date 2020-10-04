@@ -4,6 +4,7 @@ import ImageInput from "./ImageInput";
 
 const ImageInputList = ({ imageUris = [], onAddImage, onRemoveImage }) => {
   const scrollView = useRef();
+
   return (
     <View>
       <ScrollView
@@ -13,11 +14,10 @@ const ImageInputList = ({ imageUris = [], onAddImage, onRemoveImage }) => {
       >
         <View style={styles.container}>
           {imageUris.map((uri) => (
-            <View style={styles.image}>
+            <View key={uri} style={styles.image}>
               <ImageInput
-                key={uri}
                 imageUri={uri}
-                onChangeImage={() => onRemoveImage}
+                onChangeImage={() => onRemoveImage(uri)}
               />
             </View>
           ))}
