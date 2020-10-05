@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { Icon, ListItem, ListItemSeparator, Screen } from "../components";
 import { colors, routes } from "../config";
+import { useAuth } from "../hooks";
 
 const menu = [
   {
@@ -22,12 +23,14 @@ const menu = [
 ];
 
 const AccountScreen = ({ navigation }) => {
+  const { user, logOut } = useAuth();
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="John Smith"
-          subtitle="johnsmith@gmail.com"
+          title={user.name}
+          subtitle={user.email}
           image={require("../assets/headshot.jpg")}
         />
       </View>
@@ -53,6 +56,7 @@ const AccountScreen = ({ navigation }) => {
       <ListItem
         title="Logout"
         IconComponent={<Icon name="logout" backgroundColor={colors.yellow} />}
+        onPress={() => logOut()}
       />
     </Screen>
   );

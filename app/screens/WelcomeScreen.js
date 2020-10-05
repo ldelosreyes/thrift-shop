@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: 70,
+    top: 100,
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 300,
+    height: 75,
   },
   buttonsContainer: {
     padding: 20,

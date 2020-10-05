@@ -2,7 +2,7 @@ import { create } from "apisauce";
 import { cache } from "../utilities";
 
 const api = create({
-  baseURL: "http://192.168.100.43:9000/api",
+  baseURL: "https://api-thrift-shop.glitch.me/api",
 });
 
 const get = api.get;
