@@ -80,8 +80,8 @@ const LoginScreen = () => {
 
 const styles = StyleSheet.create({
   logo: {
-    width: 300,
-    height: 75,
+    width: 320,
+    height: 80,
     alignSelf: "center",
     marginVertical: 20,
   },

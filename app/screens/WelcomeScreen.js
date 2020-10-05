@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     top: 100,
   },
   logo: {
-    width: 300,
-    height: 75,
+    width: 320,
+    height: 80,
   },
   buttonsContainer: {
     padding: 20,
