@@ -5,6 +5,7 @@ export { default as CategoryPickerItem } from "./CategoryPickerItem";
 export { default as Icon } from "./Icon";
 export { default as ImageInput } from "./ImageInput";
 export { default as ImageInputList } from "./ImageInputList";
+export { default as OfflineNotice } from "./OfflineNotice";
 export { default as Picker } from "./Picker";
 export { default as PickerItem } from "./PickerItem";
 export { default as Screen } from "./Screen";
