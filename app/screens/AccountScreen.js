@@ -26,16 +26,17 @@ const AccountScreen = ({ navigation }) => {
   const { user, logOut } = useAuth();
 
   return (
-    <ScrollView style={styles.screen}>
-      <View style={styles.container}>
-        <ListItem
-          title={user.name}
-          subtitle={user.email}
-          image={require("../assets/headshot.jpg")}
-        />
-      </View>
-      <View style={styles.container}>
-        <FlatList
+    <View style={styles.screen}>
+				<FlatList
+					ListHeaderComponent={
+						<View style={styles.header}>
+							<ListItem
+								title={user.name}
+								subtitle={user.email}
+								image={require("../assets/headshot.jpg")}
+							/>
+						</View>
+					}
           scrollEnabled={false}
           data={menu}
           keyExtractor={(item) => item.title}
@@ -51,15 +52,18 @@ const AccountScreen = ({ navigation }) => {
               onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
-          ItemSeparatorComponent={ListItemSeparator}
+					ItemSeparatorComponent={ListItemSeparator}
+				ListFooterComponent={
+						<View style={styles.footer}>
+							<ListItem
+								title="Logout"
+								IconComponent={<Icon name="logout" backgroundColor={colors.yellow} />}
+								onPress={() => logOut()}
+								/>
+						</View>
+					}
         />
-      </View>
-      <ListItem
-        title="Logout"
-        IconComponent={<Icon name="logout" backgroundColor={colors.yellow} />}
-        onPress={() => logOut()}
-      />
-    </ScrollView>
+		</View>
   );
 };
 
@@ -67,9 +71,12 @@ const styles = StyleSheet.create({
   screen: {
     backgroundColor: colors.light,
   },
-  container: {
+  header: {
     marginVertical: 20,
-  },
+	},
+	footer: {
+		marginVertical: 20,
+	}
 });
 
 export default AccountScreen;

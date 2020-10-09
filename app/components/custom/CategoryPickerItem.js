@@ -7,8 +7,13 @@ import Text from "./Text";
 const CategoryPickerItem = ({ item, onPress }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Icon backgroundColor={item.backgroundColor} name={item.icon} size={80} />
-      <Text style={styles.label}>{item.label}</Text>
+			<Icon
+				backgroundColor={item.backgroundColor}
+				iconColor={item.color}
+				name={item.icon}
+				size={80}
+			/>
+      <Text style={styles.label}>{item.name}</Text>
     </TouchableOpacity>
   );
 };

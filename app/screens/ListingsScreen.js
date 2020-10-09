@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import { listingsApi } from "../api";
@@ -7,6 +7,7 @@ import { colors, routes } from "../config";
 import { useApi } from "../hooks";
 
 const ListingsScreen = ({ navigation }) => {
+	const [refreshing, setRefreshing] = useState(false);
   const { data: listings, error, loading, request: getListings } = useApi(
     listingsApi.getListings
   );
@@ -36,7 +37,9 @@ const ListingsScreen = ({ navigation }) => {
               onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
               thumbnailUrl={item.images[0].thumbnailUrl}
             />
-          )}
+					)}
+					refreshing={refreshing}
+					onRefresh={() => getListings()}
         />
       </Screen>
     </>
