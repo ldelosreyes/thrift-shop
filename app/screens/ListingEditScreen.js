@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import { listingsApi } from "../api";
@@ -93,7 +93,6 @@ const ListingEditScreen = () => {
       (progress) => setProgress(progress)
     );
 
-    console.log(response);
     if (!response.ok) {
       setUploadVisible(false);
       return alert("Could not save the listing");
@@ -104,55 +103,59 @@ const ListingEditScreen = () => {
 
   return (
     <Screen style={styles.screen}>
-      <UploadScreen
-        onDone={() => setUploadVisible(false)}
-        progress={progress}
-        visible={uploadVisible}
-      />
-      <Form
-        initialValues={{
-          title: "",
-          price: "",
-          description: "",
-          category: null,
-          images: [],
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        <FormImagePicker name="images" />
-        <FormField maxLength={255} name="title" placeholder="Title" />
-        <FormField
-          maxLength={8}
-          name="price"
-          placeholder="Price"
-          keyboardType="numeric"
-          width={120}
+      <ScrollView>
+        <UploadScreen
+          onDone={() => setUploadVisible(false)}
+          progress={progress}
+          visible={uploadVisible}
         />
-        <FormPicker
-          items={categories}
-          name="category"
-          numColumns={3}
-          PickerItemComponent={CategoryPickerItem}
-          placeholder="Category"
-          width="50%"
-        />
-        <FormField
-          maxLength={255}
-          name="description"
-          placeholder="Description"
-          multiline
-          numberOfLines={3}
-        />
-        <SubmitButton>Post</SubmitButton>
-      </Form>
+        <Form
+          initialValues={{
+            title: "",
+            price: "",
+            description: "",
+            category: null,
+            images: [],
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          <FormImagePicker name="images" />
+          <FormField maxLength={255} name="title" placeholder="Title" />
+          <FormField
+            maxLength={8}
+            name="price"
+            placeholder="Price"
+            keyboardType="numeric"
+            width={120}
+          />
+          <FormPicker
+            items={categories}
+            name="category"
+            numColumns={3}
+            PickerItemComponent={CategoryPickerItem}
+            placeholder="Category"
+            width="50%"
+          />
+          <FormField
+            maxLength={255}
+            name="description"
+            placeholder="Description"
+            multiline
+            numberOfLines={3}
+          />
+          <SubmitButton>Post</SubmitButton>
+        </Form>
+      </ScrollView>
     </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 10,
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
   },
 });
 

@@ -1,5 +1,10 @@
 import React from "react";
-import { View, StyleSheet, KeyboardAvoidingView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  ScrollView,
+} from "react-native";
 import { Image } from "react-native-expo-image-cache";
 
 import colors from "../config/color";
@@ -10,29 +15,28 @@ const ListingDetailsScreen = ({ route }) => {
   const listing = route.params;
 
   return (
-    <KeyboardAvoidingView
-      behavior="position"
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
-    >
-      <Image
-        style={styles.image}
-        preview={{ uri: listing.images[0].thumbnailUrl }}
-        tint="light"
-        uri={listing.images[0].url}
-      />
-      <View style={styles.detailsContainer}>
-        <Text style={styles.title}>{listing.title}</Text>
-        <Text style={styles.price}>${listing.price}</Text>
-        <View style={styles.userContainer}>
-          <ListItem
-            title="John Smith"
-            subtitle="2 Listings"
-            image={require("../assets/headshot.jpg")}
-          />
+    <ScrollView>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={0}>
+        <Image
+          style={styles.image}
+          preview={{ uri: listing.images[0].thumbnailUrl }}
+          tint="light"
+          uri={listing.images[0].url}
+        />
+        <View style={styles.detailsContainer}>
+          <Text style={styles.title}>{listing.title}</Text>
+          <Text style={styles.price}>${listing.price}</Text>
+          <View style={styles.userContainer}>
+            <ListItem
+              title="John Smith"
+              subtitle="2 Listings"
+              image={require("../assets/headshot.jpg")}
+            />
+          </View>
+          <ContactSellerForm listing={listing} />
         </View>
-        <ContactSellerForm listing={listing} />
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
@@ -43,6 +47,7 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     padding: 20,
+    flexGrow: 1,
   },
   title: {
     fontSize: 24,

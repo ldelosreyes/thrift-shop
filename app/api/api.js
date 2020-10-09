@@ -1,8 +1,16 @@
 import { create } from "apisauce";
+import { authStorage } from "../auth";
+import { settings } from "../config";
 import { cache } from "../utilities";
 
 const api = create({
-  baseURL: "https://api-thrift-shop.glitch.me/api",
+  baseURL: settings.apiUrl,
+});
+
+api.addAsyncRequestTransform(async (request) => {
+  const authToken = await authStorage.getToken();
+  if (!authToken) return;
+  request.headers["x-auth-token"] = authToken;
 });
 
 const get = api.get;

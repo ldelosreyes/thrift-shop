@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
-import { Icon, ListItem, ListItemSeparator, Screen } from "../components";
+import { StyleSheet, View, FlatList, ScrollView } from "react-native";
+import { Icon, ListItem, ListItemSeparator } from "../components";
 import { colors, routes } from "../config";
 import { useAuth } from "../hooks";
 
@@ -26,7 +26,7 @@ const AccountScreen = ({ navigation }) => {
   const { user, logOut } = useAuth();
 
   return (
-    <Screen style={styles.screen}>
+    <ScrollView style={styles.screen}>
       <View style={styles.container}>
         <ListItem
           title={user.name}
@@ -36,6 +36,7 @@ const AccountScreen = ({ navigation }) => {
       </View>
       <View style={styles.container}>
         <FlatList
+          scrollEnabled={false}
           data={menu}
           keyExtractor={(item) => item.title}
           renderItem={({ item }) => (
@@ -58,7 +59,7 @@ const AccountScreen = ({ navigation }) => {
         IconComponent={<Icon name="logout" backgroundColor={colors.yellow} />}
         onPress={() => logOut()}
       />
-    </Screen>
+    </ScrollView>
   );
 };
 
