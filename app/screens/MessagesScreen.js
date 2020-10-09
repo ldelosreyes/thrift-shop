@@ -12,19 +12,19 @@ const initialMessages = [
     id: 1,
     title: "Title 1",
     description: "First Message",
-    image: require("../assets/headshot.jpg"),
+    image: require("../assets/headshot.png"),
   },
   {
     id: 2,
     title: "Title 2",
     description: "Second Message",
-    image: require("../assets/headshot.jpg"),
+    image: require("../assets/headshot.png"),
   },
   {
     id: 3,
     title: "Title 3",
     description: "Third Message",
-    image: require("../assets/headshot.jpg"),
+    image: require("../assets/headshot.png"),
   },
 ];
 

@@ -30,7 +30,7 @@ const ListingDetailsScreen = ({ route }) => {
             <ListItem
               title="John Smith"
               subtitle="2 Listings"
-              image={require("../assets/headshot.jpg")}
+              image={require("../assets/headshot.png")}
             />
           </View>
           <ContactSellerForm listing={listing} />
